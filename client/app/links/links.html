@@ -1,4 +1,14 @@
 <div id='container'>
   <!-- Your html here -->
-  <!-- <h2 ng-model='getLinks()'></h2> -->
+  <h2>Links</h2>
+  <div ng-init='data.links'>
+    <input ng-model='searchText.title'>
+    <ul ng-repeat='link in data.links | filter:searchText'>
+      <li>
+          <h3>{{ link.title }}</h3>
+          <a class="link" href="{{ link.base_url }}/{{ link.code }}">{{ link.base_url }}/{{ link.code }}</span>
+      </li>
+    </ul>
+  </div>
+  <a href="#/shorten">shorten another url?</a>
 </div>

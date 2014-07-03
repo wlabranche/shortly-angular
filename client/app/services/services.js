@@ -11,18 +11,18 @@ angular.module('shortly.services', [])
     });
   };
 
-  var addLink = function(){
+  var addLink = function(link){
     return $http({
       method: 'POST',
-      url: '/api/links'
+      url: '/api/links',
+      data: link
     })
-    .then(function(){
-
+    .then(function(resp){
+      return resp.data;
     })
     .catch(function(error){
       throw error;
     });
-
   };
 
   return {
@@ -30,6 +30,8 @@ angular.module('shortly.services', [])
     addLink: addLink
   };
 })
+
+
 .factory('Auth', function ($http, $location, $window) {
   // Don't touch this Auth service!!!
   // it is responsible for authenticating our user
@@ -71,7 +73,6 @@ angular.module('shortly.services', [])
     $window.localStorage.removeItem('com.shortly');
     $location.path('/signin');
   };
-
 
   return {
     signin: signin,
